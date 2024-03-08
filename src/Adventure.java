@@ -15,6 +15,5 @@ public class Adventure {
         return gamePlayer;
     }
 
-
 }
 

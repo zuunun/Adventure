@@ -54,12 +54,13 @@ public class Room {
         return description;
     }
 
-    public String getVisited() {
+    public boolean getVisited() {
         if (!visited) {
             visited = true;
-            return description;
+            return true;
         } else {
-            return "I've already been in this room";
+            System.out.println("I've already been in this room");
+            return false;
         }
     }
 

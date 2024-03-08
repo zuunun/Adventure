@@ -4,7 +4,7 @@ public class Item {
     private String longName;
     private String shortName;
 
-    public Item( String shortName,String longName) {
+    public Item(String shortName, String longName) {
         this.longName = longName;
         this.shortName = shortName;
     }

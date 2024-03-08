@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.List;
+
 public class Map {
     private Room room1;
     private Room room2;
@@ -9,6 +12,11 @@ public class Map {
     private Room room8;
     private Room room9;
 
+    private List<Room> rooms;
+
+    public Room getRoom(int index) {
+        return rooms.get(index);
+    }
 
     public Map() {
         room1 = new Room("Room 1", "The room is brightly lit with red and black stains covering the walls. Two doors");
@@ -21,15 +29,16 @@ public class Map {
         room8 = new Room("Room 8", "This room is very big. Three doors");
         room9 = new Room("Room 9", "It's quite cold in here. The floor is slippery. Two doors");
 
+        // rooms = Arrays.asList(room1, room2, room3, room4, room5, room6, room7, room8, room9);
+        //initializeRooms();
+        rooms = Arrays.asList(room1, room2, room3, room4, room5, room6, room7, room8, room9);
+
+
         // connect rooms
         room1.setNorth(null);
         room1.setEast(room2);
         room1.setSouth(room4);
         room1.setWest(null);
-
-        //Ikke færdig
-        Item items = new Item("Book", "vyuftu");
-        room1.addItem(items);
 
         room2.setNorth(null);
         room2.setEast(room3);
@@ -81,8 +90,6 @@ public class Map {
         room7.addItem(new Item("Bedroll", "A makeshift bedroll for a weary traveler."));
         room8.addItem(new Item("Crystal Ball", "A crystal ball with an eerie glow."));
         room9.addItem(new Item("Ice Shard", "A sharp, frigid shard of ice."));
-
-
 
 
     }
