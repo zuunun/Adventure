@@ -25,17 +25,27 @@ public class Room {
     public void addItem(Item item){
         itemsInRoomArr.add(item);
     }
-    /*public boolean removeItem(Item item){
+
+    public void removeItem(Item item){
         itemsInRoomArr.remove(item);
-        return false;
-    }*/
-    public boolean removeItem(Item item) {
-        return itemsInRoomArr.remove(item);
     }
 
-    public Item findItem(String itemName) {
+    public void dropItem(Item item){
+        itemsInRoomArr.remove(item);
+    }
+
+    public String showItems() {
+        String result = "";
         for (Item item : itemsInRoomArr) {
-            if (item.getShortName().equalsIgnoreCase(itemName)) {
+            result += " and " + item.getShortName();
+        }
+        return result;
+    }
+
+    public Item findItem(String itemWord) {
+        for (Item item : itemsInRoomArr) {
+            if (item.getShortName().equals(itemWord)) {
+                itemsInRoomArr.remove(item);
                 return item;
             }
         }
@@ -54,6 +64,7 @@ public class Room {
         return description;
     }
 
+
     public boolean getVisited() {
         if (!visited) {
             visited = true;
@@ -62,6 +73,9 @@ public class Room {
             System.out.println("I've already been in this room");
             return false;
         }
+    }
+    public void resetVisited(){
+        this.visited = false;
     }
 
     public void setVisited(boolean visited) {

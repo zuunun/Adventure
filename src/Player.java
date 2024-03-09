@@ -1,7 +1,6 @@
-import com.sun.source.util.TaskEvent;
-
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Player {
     private Room currentRoom;
@@ -13,6 +12,7 @@ public class Player {
         currentRoom = firstRoom;
         inventory = new ArrayList<>();
         scanner = new Scanner(System.in);
+
     }
 
 
@@ -20,14 +20,24 @@ public class Player {
         return inventory;
     }
 
-    public void takeItem(Item item) {
-        inventory.add(item);
-        currentRoom.removeItem(item);
+    public boolean take(String itemWord){
+        Item found = currentRoom.findItem(itemWord);
+        if(found==null){
+            return false;
+        } else{
+            inventory.add(found);
+            return true;
+        }
     }
-
-    public void dropItem(Item item) {
-        inventory.remove(item);
-        currentRoom.addItem(item);
+    public boolean drop(String itemWord){
+        for (Item item : inventory) {
+            if (item.getShortName().equals(itemWord)) {
+                inventory.remove(item);
+                currentRoom.addItem(item);
+                return true;
+            }
+        }
+        return false;
     }
 
     public Item findItemInInventory(String itemName) {
@@ -38,19 +48,15 @@ public class Player {
         }
         return null;
     }
-
     public String showInventory() {
-        if (inventory.isEmpty()) {
-            return "Your inventory is empty.";
-        } else {
-            StringBuilder inventoryString = new StringBuilder("Inventory: ");
-            for (Item item : inventory) {
-                inventoryString.append(item.getShortName()).append(", ");
-            }
-            // Remove the trailing comma and space
-            inventoryString.setLength(inventoryString.length() - 2);
-            return inventoryString.toString();
+        if(inventory.isEmpty()){
+            return "Your inventory is empty";
         }
+        String result = "Your inventory contains ";
+        for (Item item : inventory) {
+            result +=  item.getShortName() + " and ";
+        }
+        return result.substring(0, result.length() - 5);
     }
 
 
@@ -62,10 +68,6 @@ public class Player {
         this.currentRoom = currentRoom;
     }
 
-    public String look() {
-        String roomInfo = "You are in: " + currentRoom.getName() + "\n" + currentRoom.getDescription() + "\n";
-        return roomInfo;
-    }
 
     public boolean moveAround(String direction) {
         switch (direction) {
@@ -125,6 +127,8 @@ public class Player {
             return false;
         }
     }
+
+
 }
 
 

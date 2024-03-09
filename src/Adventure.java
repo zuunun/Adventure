@@ -14,6 +14,23 @@ public class Adventure {
     public Player getGamePlayer() {
         return gamePlayer;
     }
+//    public boolean take(String itemWord){
+//        return player.take(itemWord);
+//
+//    }
+//
+//    public boolean drop(String itemWord){
+//        return player.drop(itemWord);
+//
+//    }
+//
+//    public String showInventory(){
+//        return player.showInvetory();
+//    }
+//
+//    public boolean moveAround(){
+//        return gamePlayer.moveAround();
+//    }
 
 }
 

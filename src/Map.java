@@ -82,40 +82,37 @@ public class Map {
 
         // Add items to rooms
         room1.addItem(new Item("Book", "A dusty old book with strange symbols."));
+        room1.addItem(new Item("Snake", "A glistnening green cobra, with teeth like daggers"));
+        room1.addItem(new Item("Shield", "A wide gold shield with special capabilites"));
+
         room2.addItem(new Item("Candle", "A partially burned candle emitting a faint light."));
+        room2.addItem(new Item("Scroll", "An old scroll with magical inscriptions."));
+        room2.addItem(new Item("Lantern", "A small lantern that lights up dark places."));
+
         room3.addItem(new Item("Key", "A rusty key that may unlock something."));
+        room3.addItem(new Item("Sword", "A rusty old sword."));
+
         room4.addItem(new Item("Potion", "A mysterious potion with a swirling liquid."));
+        room4.addItem(new Item("Shield", "A wooden shield."));
+
         room5.addItem(new Item("Treasure Chest", "A locked chest promising untold riches."));
+        room5.addItem(new Item("Ring", "A golden ring with a sparkling gemstone."));
+
         room6.addItem(new Item("Map", "A tattered map with cryptic markings."));
+        room6.addItem(new Item("Silver Coin", "A shiny silver coin."));
+
         room7.addItem(new Item("Bedroll", "A makeshift bedroll for a weary traveler."));
+        room7.addItem(new Item("Chest", "A wooden chest with a lock."));
+        room7.addItem(new Item("Pouch", "A small pouch for carrying items."));
+
         room8.addItem(new Item("Crystal Ball", "A crystal ball with an eerie glow."));
+        room8.addItem(new Item("Magic Wand", "A wand of arcane power."));
+
         room9.addItem(new Item("Ice Shard", "A sharp, frigid shard of ice."));
+        room9.addItem(new Item("Fire Shard", "A sharp, flaming shard of fire."));
 
 
     }
-
-    public void takeItem(Player player, String itemName) {
-        Item item = player.getCurrentRoom().findItem(itemName);
-        if (item != null) {
-            player.takeItem(item);
-            player.getCurrentRoom().removeItem(item);
-            System.out.println("You took: " + item.getLongName());
-        } else {
-            System.out.println("There is nothing like " + itemName + " to take around here");
-        }
-    }
-
-    public void dropItem(Player player, String itemName) {
-        Item item = player.findItemInInventory(itemName);
-        if (item != null) {
-            player.dropItem(item);
-            player.getCurrentRoom().addItem(item);
-            System.out.println("You dropped: " + item.getLongName());
-        } else {
-            System.out.println("You don't have anything like " + itemName + " in your inventory");
-        }
-    }
-
 
     public Room getRoom1() {
         return room1;
