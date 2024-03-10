@@ -8,49 +8,40 @@ public class Room {
     private Room east;
     private Room west;
     private Room south;
-    private ArrayList<Item> itemsInRoomArr = new ArrayList<>();
+    private ArrayList<Item> itemsInRoom = new ArrayList<>();
 
-    public Room(String name, String description){
-        this.name=name;
-        this.description=description;
-        this.visited=false;
-    }
-
-    public ArrayList<Item> getItemsInRoomArr(){
-        return itemsInRoomArr;
-    }
-    public void setItemsInRoomArr(ArrayList<Item> itemsInRoomArr){
-        this.itemsInRoomArr = itemsInRoomArr;
-    }
-    public void addItem(Item item){
-        itemsInRoomArr.add(item);
+    public Room(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.visited = false;
     }
 
-    public void removeItem(Item item){
-        itemsInRoomArr.remove(item);
+    public void addItem(Item item) {
+        itemsInRoom.add(item);
     }
 
-    public void dropItem(Item item){
-        itemsInRoomArr.remove(item);
+    public void removeItem(Item item) {
+        itemsInRoom.remove(item);
     }
 
-    public String showItems() {
-        String result = "";
-        for (Item item : itemsInRoomArr) {
-            result += " and " + item.getShortName();
-        }
-        return result;
+    public ArrayList<Item> getItemsInRoom() {
+        return itemsInRoom;
     }
 
-    public Item findItem(String itemWord) {
-        for (Item item : itemsInRoomArr) {
-            if (item.getShortName().equals(itemWord)) {
-                itemsInRoomArr.remove(item);
+    public Item findItem(String itemName) {
+        for (Item item : itemsInRoom) {
+            if (item.getShortName().equalsIgnoreCase(itemName)) {
                 return item;
             }
         }
         return null;
     }
+
+
+    public void setItemsInRoom(ArrayList itemsInRoomA) {
+        this.itemsInRoom = itemsInRoom;
+    }
+
 
     public String getName() {
         return name;
@@ -74,7 +65,8 @@ public class Room {
             return false;
         }
     }
-    public void resetVisited(){
+
+    public void resetVisited() {
         this.visited = false;
     }
 
@@ -82,8 +74,8 @@ public class Room {
         this.visited = visited;
     }
 
-    public void String (boolean visited) {
-        this.visited=false;
+    public void String(boolean visited) {
+        this.visited = false;
     }
 
     public void setDescription(String description) {
