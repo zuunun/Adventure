@@ -15,7 +15,8 @@ public class UserInterface {
     public void startGame() {
         System.out.println("Welcome to the Adventure Game! Type 'help' for further instructions!");
         System.out.println(adventure.getGamePlayer().look());
-        System.out.println(adventure.getGamePlayer().showInventory());
+        System.out.println("Items in Room: " + adventure.getGamePlayer().showRoomInventory());
+
         while (true) {
             System.out.print("Enter your command: ");
             String input = scanner.nextLine().toLowerCase();
@@ -27,7 +28,7 @@ public class UserInterface {
                 case "inventory":
                 case "inv":
                 case "invent":
-                    System.out.println(adventure.getGamePlayer().showInventory());
+                    System.out.println("Inventory: "+adventure.getGamePlayer().showInventory());
                     break;
                 case "help":
                     help();

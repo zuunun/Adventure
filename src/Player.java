@@ -30,10 +30,6 @@ public class Player {
         return inventory;
     }
 
-//    public void setInventory(ArrayList<Item> inventory) {
-//        this.inventory = inventory;
-//    }
-
     public void takeItem(String itemName) {
         Item item = currentRoom.findItem(itemName);
         if (item != null) {
@@ -71,9 +67,8 @@ public class Player {
         return roomInfo.toString();
     }
 
-    public String showInventory() {
+    public String showRoomInventory() {
         List<Item> roomItems = currentRoom.getItemsInRoom();
-
         if (roomItems.isEmpty()) {
             return "The room is empty.";
         } else {
@@ -81,7 +76,19 @@ public class Player {
             for (Item item : roomItems) {
                 joiner.add(item.getShortName());
             }
-            return "Inventory: " + joiner.toString();
+            return joiner.toString();
+        }
+    }
+
+    public String showInventory() {
+        if (inventory.isEmpty()) {
+            return "Your inventory is empty";
+        } else {
+            StringJoiner joiner = new StringJoiner(", ");
+            for (Item item : inventory) {
+                joiner.add(item.getShortName());
+            }
+            return " " + joiner.toString();
         }
     }
 
