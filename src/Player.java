@@ -1,11 +1,9 @@
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.StringJoiner;
-import java.util.stream.Collectors;
 
 public class Player {
     private ArrayList<Item> inventoryArr;
+    private int health; //
+
 
     public Player() {
         this.inventoryArr = new ArrayList<>();
@@ -27,7 +25,17 @@ public class Player {
     public void setInventoryArr(ArrayList<Item> inventoryArr) {
         this.inventoryArr = inventoryArr;
     }
+    //Getter + setter health
+    public int getHealth(){
+        return health;
+    }
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
+    public void getHealthPoints(int points) {
+        setHealth(getHealth() + points);
+    }
 
 }
 

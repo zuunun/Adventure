@@ -111,6 +111,12 @@ public class Map {
         room9.addItem(new Item("Ice Shard", "A sharp, frigid shard of ice."));
         room9.addItem(new Item("Fire Shard", "A sharp, flaming shard of fire."));
 
+        // Add Food objects to rooms
+        room1.addItem(new Food("Apple", "A red apple", 10));
+        room2.addItem(new Food("Bread", "A loaf of fresh bread", 15));
+        room3.addItem(new Food("Poisonous Mushroom", "A dangerous-looking mushroom", -20));
+
+
 
     }
 
