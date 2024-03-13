@@ -8,7 +8,8 @@ public class Room {
     private Room east;
     private Room west;
     private Room south;
-    private ArrayList<Item> itemsInRoom = new ArrayList<>();
+
+    private ArrayList<Item> itemsInRoomArr = new ArrayList<>();
 
     public Room(String name, String description) {
         this.name = name;
@@ -17,29 +18,20 @@ public class Room {
     }
 
     public void addItem(Item item) {
-        itemsInRoom.add(item);
+        itemsInRoomArr.add(item);
     }
 
     public void removeItem(Item item) {
-        itemsInRoom.remove(item);
+        itemsInRoomArr.remove(item);
     }
 
-    public ArrayList<Item> getItemsInRoom() {
-        return itemsInRoom;
-    }
-
-    public Item findItem(String itemName) {
-        for (Item item : itemsInRoom) {
-            if (item.getShortName().equalsIgnoreCase(itemName)) {
-                return item;
-            }
-        }
-        return null;
+    public ArrayList<Item> getItemsInRoomArr() {
+        return itemsInRoomArr;
     }
 
 
-    public void setItemsInRoom(ArrayList itemsInRoomA) {
-        this.itemsInRoom = itemsInRoom;
+    public void setItemsInRoomArr(ArrayList itemsInRoomArr) {
+        this.itemsInRoomArr = itemsInRoomArr;
     }
 
 
@@ -57,26 +49,15 @@ public class Room {
 
 
     public boolean getVisited() {
+        return visited;
+    }
+
+    public void setVisited() {
         if (!visited) {
             visited = true;
-            return true;
-        } else {
-            System.out.println("I've already been in this room");
-            return false;
         }
     }
 
-    public void resetVisited() {
-        this.visited = false;
-    }
-
-    public void setVisited(boolean visited) {
-        this.visited = visited;
-    }
-
-    public void String(boolean visited) {
-        this.visited = false;
-    }
 
     public void setDescription(String description) {
         this.description = description;
@@ -113,6 +94,7 @@ public class Room {
     public void setSouth(Room south) {
         this.south = south;
     }
+
 
 
 }
