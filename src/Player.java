@@ -25,19 +25,27 @@ public class Player {
     public void setInventoryArr(ArrayList<Item> inventoryArr) {
         this.inventoryArr = inventoryArr;
     }
+
     //Getter + setter health
-    public int getHealth(){
+    public int getHealth() {
         return health;
     }
+
     public void setHealth(int health) {
         this.health = health;
     }
 
-    public void getHealthPoints(int points) {
-        setHealth(getHealth() + points);
+    public void eatFood(Food foodName) {
+        int newHealth = Math.min(100, getHealth() + foodName.getHealthPoints());
+        setHealth(newHealth);
     }
-
 }
+//    public void eatFood(Food foodName) {
+//        int healthPoints = health + foodName.getHealthPoints();
+//        setHealth(healthPoints);
+//    }
+
+
 
 
 

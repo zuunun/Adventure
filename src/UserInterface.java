@@ -12,9 +12,9 @@ public class UserInterface {
         look();
         int userChoice = 0;
 
-        while (userChoice != 7) {
+        while (userChoice != 9) {
             menu();
-            userChoice = getInteger(1, 7);
+            userChoice = getInteger(1, 9);
 
             switch (userChoice) {
                 //Choose direction:
@@ -133,13 +133,43 @@ public class UserInterface {
     }
 
     public void health() {
-
+        int playerHealth = newAdventure.getGamePlayer().getHealth();
+        System.out.println("Your current health: " + playerHealth);
     }
 
 
     public void eat() {
-
+        System.out.println("Food available in the room:");
+        printFoodInCurrentRoom();
+        System.out.println("Food available in your inventory:");
+        printFoodInInventory();
+        System.out.print("Choose a food to eat or take: ");
+        String playerChoice = getStringInput();
+        System.out.print("Choose to either eat or take food: ");
+        String command = getStringInput();
+        Food chosenFood = (Food) newAdventure.playerEat(command, playerChoice);
+        if (chosenFood != null) {
+            System.out.println("You " + command + " " + playerChoice);
+        } else {
+            System.out.println("Couldn't find or eat the selected food. Try again!");
+        }
     }
+    private void printFoodInCurrentRoom() {
+        for (Item item : newAdventure.getCurrentRoom().getItemsInRoomArr()) {
+            if (item instanceof Food) {
+                System.out.println(item.getShortName());
+            }
+        }
+    }
+
+    private void printFoodInInventory() {
+        for (Item item : newAdventure.getGamePlayer().getInventoryArr()) {
+            if (item instanceof Food) {
+                System.out.println(item.getShortName());
+            }
+        }
+    }
+
 
     public void help() {
         System.out.println("Type 1 to choose which direction you wish to go in: North, South, East or West.");
@@ -193,7 +223,7 @@ public class UserInterface {
         System.out.println("Items in this room:");
         ArrayList<Item> items = newAdventure.getCurrentRoom().getItemsInRoomArr();
         for (Item item : items) {
-            System.out.println(item.getLongName());
+            System.out.println(item.getShortName());
         }
     }
 }

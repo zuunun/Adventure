@@ -122,7 +122,33 @@ public class Adventure {
         }
         return null;
     }
+    public Item playerEat(String command, String foodName) {
+        Item foodInInventory = findItemInInventory(foodName, gamePlayer.getInventoryArr());
+        Item foodInRoom = findItemInInventory(foodName, currentRoom.getItemsInRoomArr());
+        Food foodToHandel;
 
+
+        if (foodInInventory == null && foodInRoom == null) {
+            return null;
+        } else if (foodInInventory != null) {
+            foodToHandel = (Food) foodInInventory;
+            gamePlayer.removeItem(foodInInventory);
+
+        } else {
+
+            foodToHandel = (Food) foodInRoom;
+            currentRoom.removeFood((Food) foodInRoom);
+        }
+
+        if ("eat".equals(command)) {
+            gamePlayer.eatFood(foodToHandel);
+
+        } else {
+            gamePlayer.addItem(foodToHandel);
+        }
+
+        return foodToHandel;
+    }
 
 }
 

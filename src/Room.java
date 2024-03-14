@@ -24,6 +24,13 @@ public class Room {
     public void removeItem(Item item) {
         itemsInRoomArr.remove(item);
     }
+    public void addFood(Food food) {
+        itemsInRoomArr.add(food);
+    }
+
+    public void removeFood(Food food) {
+        itemsInRoomArr.remove(food);
+    }
 
     public ArrayList<Item> getItemsInRoomArr() {
         return itemsInRoomArr;
