@@ -24,6 +24,7 @@ public class Room {
     public void removeItem(Item item) {
         itemsInRoomArr.remove(item);
     }
+
     public void addFood(Food food) {
         itemsInRoomArr.add(food);
     }
@@ -101,7 +102,6 @@ public class Room {
     public void setSouth(Room south) {
         this.south = south;
     }
-
 
 
 }
