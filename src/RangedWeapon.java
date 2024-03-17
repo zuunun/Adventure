@@ -1,12 +1,23 @@
-public class RangedWeapon extends Weapon{
-    private int reminingUses;
+public class RangedWeapon extends Weapon {
+    private int remainingUses;
 
-    public RangedWeapon(String shortName, String longName, int reminingUses){
-        super(shortName,longName);
-        this.reminingUses = reminingUses;
+    public RangedWeapon(String shortName, String longName, int remainingUses) {
+        super(shortName, longName);
+        this.remainingUses = remainingUses;
     }
 
-    public int getReminingUses() {
-        return reminingUses;
+    public int getRemainingUses() {
+        return remainingUses;
+    }
+    // Override method to get remaining uses for ranged weapons
+    @Override
+    public int remainingUses() {
+        return remainingUses;
+    }
+
+    // Method to decrement remaining uses
+    public void decrementRemainingUses() {
+        remainingUses--;
     }
 }
+

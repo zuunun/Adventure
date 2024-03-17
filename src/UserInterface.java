@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -60,6 +61,26 @@ public class UserInterface {
                     }
                 }
                 case "eat" -> eat();
+                case "equip" -> {
+                    System.out.println("Enter name of the weapon to equip: ");
+                    String weaponName = getStringInput();
+                    Weapon equippedWeapon = newAdventure.equipWeapon(weaponName);
+                    if (equippedWeapon != null) {
+                        System.out.println("You eaquiped the: " + equippedWeapon.getShortName() + ".");
+                    } else {
+                        System.out.println("You don't have a weapon named: " + weaponName + " in your inventory.");
+                    }
+                }
+                case "attack" -> {
+                    System.out.println("Choose a weapon to attack with: ");
+                    String weaponName = getStringInput();
+                    Weapon equippedWeapon = newAdventure.getEquippedWeapon();
+                    if (equippedWeapon != null && equippedWeapon.getShortName().equalsIgnoreCase(weaponName)) {
+                        System.out.println("You attacked with " + equippedWeapon.getShortName() + ".");
+                    } else {
+                        System.out.println("You don't have a weapon named " + weaponName + " equipped.");
+                    }
+                }
                 case "help" -> help();
                 case "exit", "exit game" -> System.out.println("Exiting game.");
                 default -> System.out.println("Invalid choice.");
@@ -90,18 +111,12 @@ public class UserInterface {
         System.out.println("Health");
         System.out.println("Take");
         System.out.println("Drop");
+        System.out.println("Equip");
+        System.out.println("Attack");
         System.out.println("Eat");
         System.out.println("Help");
         System.out.println("Exit game");
 
-    }
-
-
-    public String choosingDirection() {
-        System.out.println("Choose direction");
-        String userDirection = getStringInput();
-        userDirection = userDirection.toLowerCase();
-        return userDirection;
     }
 
 
@@ -157,15 +172,17 @@ public class UserInterface {
     }
 
     public void help() {
-        System.out.println("To choose which direction you wish to go in type North, South, East or West.");
-        System.out.println("Type look to look around the room you're currently in.");
-        System.out.println("Type inventory to see what's in your inventory");
-        System.out.println("Type health to see your health score");
-        System.out.println("Type take to choose an item to take from the room you're in");
-        System.out.println("Type inventory to choose an item from your inventory to drop");
-        System.out.println("Type eat to eat something from the room your in");
-        System.out.println("Type help for help (like you just did)");
-        System.out.println("Type exit to exit the game.\n");
+        System.out.println("Type: north, south, east or west to choose direction.");
+        System.out.println("Type: 'look' to look around the room you're currently in.");
+        System.out.println("Type: 'inventory' to see what's in your inventory");
+        System.out.println("Type: 'health' to see your health score");
+        System.out.println("Type: 'take' to choose an item to take from the room you're in");
+        System.out.println("Type: inventory to choose an item from your inventory to drop");
+        System.out.println("Type: 'attack' to attack the enemy");
+        System.out.println("Type: 'equip'");
+        System.out.println("Type: 'eat' to eat something from the room your in");
+        System.out.println("Type: 'help' for help (like you just did)");
+        System.out.println("Type: 'exit' to exit the game.\n");
     }
 
 
