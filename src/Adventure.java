@@ -149,19 +149,23 @@ public class Adventure {
 
         return foodToHandel;
     }
+//    public Weapon equipWeapon(String weaponName) {
+//        ArrayList<Item> inventory = gamePlayer.getInventoryArr();
+//
+//        for (Item item : inventory) {
+//            if (item instanceof Weapon && item.getShortName().equalsIgnoreCase(weaponName)) {
+//                gamePlayer.setEquippedWeapon((Weapon) item);
+//                return (Weapon) item;
+//            }
+//        }
+//        return null;
+//    }
     public Weapon equipWeapon(String weaponName) {
-        ArrayList<Item> inventory = gamePlayer.getInventoryArr();
+        Item weaponToTake = findItemInInventory(weaponName, inventory());
+        Weapon equippedWeapon = (weaponToTake instanceof Weapon) ? (Weapon) weaponToTake : null;
+        gamePlayer.setEquippedWeapon(equippedWeapon);
+        return equippedWeapon;
 
-        for (Item item : inventory) {
-            if (item instanceof Weapon && item.getShortName().equalsIgnoreCase(weaponName)) {
-                gamePlayer.setEquippedWeapon((Weapon) item);
-                return (Weapon) item;
-            }
-        }
-        return null;
-    }
-    public Weapon getEquippedWeapon(){
-        return gamePlayer.getEquippedWeapon();
     }
 
 }

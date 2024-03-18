@@ -10,8 +10,9 @@ public class Player {
         this.inventoryArr = new ArrayList<>();
     }
     public Weapon getEquippedWeapon() {
-        return equippedWeapon;
+        return  equippedWeapon;
     }
+
     public void setEquippedWeapon(Weapon equippedWeapon){
         this.equippedWeapon = equippedWeapon;
     }

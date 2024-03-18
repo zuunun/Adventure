@@ -1,13 +1,14 @@
-public class Weapon extends Item {
-    public int remainingUses() {
-        return 0;
-    }
-
-
+public abstract class Weapon extends Item {
     public Weapon(String shortName, String longName) {
         super(shortName, longName);
-
     }
 
 
+    abstract int getRemainingUse();
+
+
+    abstract void useWeapon();
 }
+
+
+
