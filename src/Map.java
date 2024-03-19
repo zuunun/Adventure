@@ -77,6 +77,7 @@ public class Map {
         room1.addFood(new Food("Apple", "A pink apple with a strange glow to it", 10));
         room1.addItem(new RangedWeapon("Bow", "Sharp and poisened bow", 10, 10));
         room1.addItem(new MeleeWeapon("Butter Knife", "Dull butter knife", 10));
+        room1.addEnemy(new Enemy("Troll", "A large spiky troll", 10,new MeleeWeapon("Club", "A large wooden club", 5)));
 
         room2.addItem(new Item("Candle", "A partially burned candle emitting a faint light."));
         room2.addItem(new Item("Scroll", "An old scroll with magical inscriptions."));

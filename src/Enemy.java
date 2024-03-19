@@ -42,11 +42,13 @@ public class Enemy {
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
+    // Metode til fjendens angreb
     public void attack(Player player){
         if(weapon != null){
             int damage = weapon.getDamagePoints();
         }
     }
+    // Metode til at modtage skade
     public void takeDamage(int damage){
         health -= damage;
         if(health<=0){

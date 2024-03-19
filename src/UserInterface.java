@@ -8,11 +8,11 @@ public class UserInterface {
     final String[] directions = new String[]{"go south", "south", "s",
             "go north", "north", "n",
             "go east", "east", "e",
-            "go west","west", "w"};
+            "go west", "west", "w"};
 
     // Convert direction Array to a list
     private List<String> directionsList = Arrays.asList(directions);
-
+    private Room currentRoom;
 
 
     public void playingGame() {
@@ -42,14 +42,14 @@ public class UserInterface {
                 case "inventory" -> {
                     System.out.println("Inventory:");
                     showItemInArray(newAdventure.getGamePlayer().getInventoryArr());
-                    if (newAdventure.getGamePlayer().getEquippedWeapon()!=null){
+                    if (newAdventure.getGamePlayer().getEquippedWeapon() != null) {
                         Weapon equippedWeapon = newAdventure.getGamePlayer().getEquippedWeapon();
-                        System.out.println("You are equipped with "+equippedWeapon.getShortName() + ".");
+                        System.out.println("You are equipped with " + equippedWeapon.getShortName() + ".");
                     }
                 }
 
                 //TAKE:
-                case String s when s.startsWith("take")-> {
+                case String s when s.startsWith("take") -> {
                     if (userChoice.length() >= 5) {
                         String itemToTake = userChoice.substring(4);
                         takeItem(itemToTake.trim());
@@ -98,9 +98,6 @@ public class UserInterface {
     }
 
 
-
-
-
     public void menu() {
         System.out.println();
         System.out.println("Choose direction: s/n/w/e");
@@ -139,7 +136,7 @@ public class UserInterface {
     }
 
     public void takeItem(String itemToTake) {
-        Item choosenItem =  newAdventure.takeItem(itemToTake);
+        Item choosenItem = newAdventure.takeItem(itemToTake);
         if (choosenItem != null) {
             System.out.println("You took the " + choosenItem.getShortName() + ".");
         } else {
@@ -151,7 +148,7 @@ public class UserInterface {
         Item droppedItem = newAdventure.dropItem(itemToDrop);
         if (droppedItem != null) {
             System.out.println("You dropped " + droppedItem.getShortName() + ".");
-        } else{
+        } else {
             System.out.println("You don't have anything like '" + itemToDrop + "' in you inventory.");
         }
     }
@@ -179,11 +176,11 @@ public class UserInterface {
     }
 
     public void eat(String foodName) {
-        Food choosenFood =  newAdventure.playerEat(foodName);
+        Food choosenFood = newAdventure.playerEat(foodName);
         if (choosenFood != null) {
             System.out.println("You ate " + foodName + ".");
         } else {
-            System.out.println("Could not find a food called " + foodName );
+            System.out.println("Could not find a food called " + foodName);
         }
     }
 
@@ -192,26 +189,30 @@ public class UserInterface {
         if (equippedWeapon == null) {
             System.out.println("You don't have a weapon named " + weaponName + " in your inventory.");
 
-        } else if ( !(equippedWeapon instanceof Weapon)) {
+        } else if (!(equippedWeapon instanceof Weapon)) {
             System.out.println("You can not equip " + weaponName + ".");
-        }
-        else {
+        } else {
             System.out.println("You equipped " + weaponName + ".");
         }
     }
 
 
-
     public void attack() {
         Weapon equippedWeapon = newAdventure.getGamePlayer().getEquippedWeapon();
-        if (equippedWeapon == null ) {
+        if (equippedWeapon == null) {
             System.out.println("You don't have a weapon equipped.");
-        } else if(equippedWeapon.getRemainingUse()== 0 ) {
+        } else if (equippedWeapon.getRemainingUse() == 0) {
             System.out.println("You don't have any ammunition left.");
-        }else{
+        } else {
             equippedWeapon.useWeapon();
             System.out.println("You attacked with " + equippedWeapon.getShortName() + " and did " + equippedWeapon.getDamagePoints() + " damage.");
+            // Angreb fjender i rummet
+            for (Enemy enemy : currentRoom.getEnemies()) {
+                enemy.takeDamage(equippedWeapon.getDamagePoints());
+                enemy.attack(newAdventure.getGamePlayer()); // Fjenden angriber tilbage
+            }
         }
+
 
     }
 
