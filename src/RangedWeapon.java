@@ -1,11 +1,10 @@
 public class RangedWeapon extends Weapon {
     private int ammunition;
 
-    public RangedWeapon(String shortName, String longName, int ammunition) {
-        super(shortName, longName);
+    public RangedWeapon(String shortName, String longName, int ammunition, int damagePoints) {
+        super(shortName, longName, damagePoints);
         this.ammunition = ammunition;
     }
-
 
     @Override
     int getRemainingUse() {
@@ -13,10 +12,17 @@ public class RangedWeapon extends Weapon {
     }
 
     @Override
+    int getDamagePoints() {
+        return damagePoints;
+    }
+
+
+    @Override
     void useWeapon() {
         ammunition--;
 
     }
+
 }
 
 

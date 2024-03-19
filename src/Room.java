@@ -10,12 +10,28 @@ public class Room {
     private Room south;
 
     private ArrayList<Item> itemsInRoomArr = new ArrayList<>();
+    private ArrayList<Enemy> enemies = new ArrayList<>();
 
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
         this.visited = false;
     }
+    // Method to add enemy to room
+    public void addEnemy(Enemy enemy) {
+        enemies.add(enemy);
+    }
+
+    // Method to remove enemy from room
+    public void removeEnemy(Enemy enemy) {
+        enemies.remove(enemy);
+    }
+
+    // Method to get enemies in room
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
 
     public void addItem(Item item) {
         itemsInRoomArr.add(item);

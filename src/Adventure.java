@@ -5,11 +5,13 @@ public class Adventure {
     private Player gamePlayer;
     private Room currentRoom;
 
+
     public Adventure() {
         gameMap = new Map();
         gamePlayer = new Player();
         currentRoom = gameMap.getRoom1();
         currentRoom.setVisited();
+        gamePlayer.setHealth(100);
     }
 
 
@@ -86,7 +88,7 @@ public class Adventure {
 
 
     public Item takeItem(String itemName) {
-        Item item = findItemInInventory(itemName, currentRoom.getItemsInRoomArr());
+        Item item = findItemInArray(itemName, currentRoom.getItemsInRoomArr());
         if (item != null) {
             currentRoom.removeItem(item);
             gamePlayer.addItem(item);
@@ -103,18 +105,19 @@ public class Adventure {
     }
 
     public Item dropItem(String itemName) {
-        Item item = findItemInInventory(itemName, gamePlayer.getInventoryArr());
+        Item item = findItemInArray(itemName, gamePlayer.getInventoryArr());
         if (item != null) {
+            if (item instanceof Weapon) {
+                gamePlayer.setEquippedWeapon(null);
+            }
             gamePlayer.removeItem(item);
             currentRoom.addItem(item);
-            return item;
-        } else {
-            return null;
         }
+        return item;
     }
 
 
-    public Item findItemInInventory(String itemName, ArrayList<Item> itemsList) {
+    public Item findItemInArray(String itemName, ArrayList<Item> itemsList) {
         for (Item item : itemsList) {
             if (item.getShortName().equalsIgnoreCase(itemName)) {
                 return item;
@@ -122,49 +125,34 @@ public class Adventure {
         }
         return null;
     }
-    public Item playerEat(String command, String foodName) {
-        Item foodInInventory = findItemInInventory(foodName, gamePlayer.getInventoryArr());
-        Item foodInRoom = findItemInInventory(foodName, currentRoom.getItemsInRoomArr());
-        Food foodToHandel;
 
+    public Food playerEat(String foodName) {
+        Item foodInInventory = findItemInArray(foodName, gamePlayer.getInventoryArr());
+        Item foodInRoom = findItemInArray(foodName, currentRoom.getItemsInRoomArr());
+        Food foodToHandel = null;
 
-        if (foodInInventory == null && foodInRoom == null) {
-            return null;
-        } else if (foodInInventory != null) {
+        if (foodInRoom instanceof Food) {
+            foodToHandel = (Food) foodInRoom;
+            gamePlayer.eatFood(foodToHandel);
+            currentRoom.removeFood((Food) foodInRoom);
+
+        } else if (foodInInventory instanceof Food) {
             foodToHandel = (Food) foodInInventory;
+            gamePlayer.eatFood(foodToHandel);
             gamePlayer.removeItem(foodInInventory);
 
-        } else {
-
-            foodToHandel = (Food) foodInRoom;
-            currentRoom.removeFood((Food) foodInRoom);
-        }
-
-        if ("eat".equals(command)) {
-            gamePlayer.eatFood(foodToHandel);
-
-        } else {
-            gamePlayer.addItem(foodToHandel);
         }
 
         return foodToHandel;
     }
-//    public Weapon equipWeapon(String weaponName) {
-//        ArrayList<Item> inventory = gamePlayer.getInventoryArr();
-//
-//        for (Item item : inventory) {
-//            if (item instanceof Weapon && item.getShortName().equalsIgnoreCase(weaponName)) {
-//                gamePlayer.setEquippedWeapon((Weapon) item);
-//                return (Weapon) item;
-//            }
-//        }
-//        return null;
-//    }
-    public Weapon equipWeapon(String weaponName) {
-        Item weaponToTake = findItemInInventory(weaponName, inventory());
-        Weapon equippedWeapon = (weaponToTake instanceof Weapon) ? (Weapon) weaponToTake : null;
-        gamePlayer.setEquippedWeapon(equippedWeapon);
-        return equippedWeapon;
+
+    public Item equipWeapon(String weaponName) {
+        Item weaponToTake = findItemInArray(weaponName, inventory());
+        if (weaponToTake instanceof Weapon) {
+            gamePlayer.setEquippedWeapon((Weapon) weaponToTake);
+        }
+
+        return weaponToTake;
 
     }
 
