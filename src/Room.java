@@ -10,7 +10,7 @@ public class Room {
     private Room south;
 
     private ArrayList<Item> itemsInRoomArr = new ArrayList<>();
-    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private ArrayList<Enemy> enemiesInRoomArr = new ArrayList<>();
 
     public Room(String name, String description) {
         this.name = name;
@@ -19,17 +19,17 @@ public class Room {
     }
     // Method to add enemy to room
     public void addEnemy(Enemy enemy) {
-        enemies.add(enemy);
+        enemiesInRoomArr.add(enemy);
     }
 
     // Method to remove enemy from room
     public void removeEnemy(Enemy enemy) {
-        enemies.remove(enemy);
+        enemiesInRoomArr.remove(enemy);
     }
 
     // Method to get enemies in room
-    public ArrayList<Enemy> getEnemies() {
-        return enemies;
+    public ArrayList<Enemy> getEnemiesInRoomArr() {
+        return enemiesInRoomArr;
     }
 
 

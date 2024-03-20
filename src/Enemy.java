@@ -1,13 +1,13 @@
 public class Enemy {
     private String name;
     private String description;
-    private int health;
+    private int enemyHealthPoints;
     private Weapon weapon;
 
-    public Enemy(String name, String description, int health, Weapon weapon){
+    public Enemy(String name, String description, int enemyHealthPoints, Weapon weapon){
         this.name=name;
         this.description = description;
-        this.health = health;
+        this.enemyHealthPoints = enemyHealthPoints;
         this.weapon= weapon;
     }
 
@@ -27,12 +27,12 @@ public class Enemy {
         this.description = description;
     }
 
-    public int getHealth() {
-        return health;
+    public int getEnemyHealthPoints() {
+        return enemyHealthPoints;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
+    public void setEnemyHealthPoints(int enemyHealthPoints) {
+        this.enemyHealthPoints = enemyHealthPoints;
     }
 
     public Weapon getWeapon() {
@@ -48,18 +48,5 @@ public class Enemy {
             int damage = weapon.getDamagePoints();
         }
     }
-    // Metode til at modtage skade
-    public void takeDamage(int damage){
-        health -= damage;
-        if(health<=0){
-            die();
-        }
-    }
-    private void die(){
-        System.out.println("The " + name + " has been defeated");
-        // Drop weapon to room
 
-        // Remove enemy from room
-
-    }
 }
