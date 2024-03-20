@@ -51,12 +51,6 @@ public class Enemy {
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
-    // Metode til fjendens angreb
-    public void attack(Player player){
-        if(weapon != null){
-            int damage = weapon.getDamagePoints();
-        }
-    }
 
     public boolean isDead() {
         return this.enemyHealthPoints<= 0;
