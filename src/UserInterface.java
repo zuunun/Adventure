@@ -193,6 +193,7 @@ public class UserInterface {
 
     }
 
+
     public void menu() {
         System.out.println();
         System.out.println("Choose direction: s/n/w/e");
@@ -235,11 +236,12 @@ public class UserInterface {
         System.out.println("Type 'help' for help (like you just did).");
         System.out.println("Type 'exit' to exit the game.\n");
     }
-
-
     public void attack(String wantedEnemy) {
+        if (wantedEnemy.length() < 7) {
+            System.out.println("Invalid enemy name.");
+            return;
+        }
         String enemyToFight = wantedEnemy.substring(6).trim();
-        // should add a length check here
 
         ArrayList<Enemy> foundEnemies = newAdventure.getCurrentRoom().getEnemiesInRoomArr();
         if (foundEnemies.isEmpty()) {
@@ -254,22 +256,64 @@ public class UserInterface {
                         System.out.println("You don't have any ammunition left.");
                     } else {
                         equippedWeapon.useWeapon();
-                        int enemyNewHealth = (enemy.getEnemyHealthPoints()) - equippedWeapon.damagePoints;
-                        enemy.setEnemyHealthPoints(enemyNewHealth);
+                        enemy.hit(equippedWeapon.getDamagePoints());   // Call hit method
                         System.out.println("You attacked with " + equippedWeapon.getShortName() + " and did " +
                                 equippedWeapon.getDamagePoints() + " damage on " + enemyToFight + " and "
-                                + enemyToFight + " now has " + enemyNewHealth + " hp left");
+                                + enemyToFight + " now has " + enemy.getEnemyHealthPoints() + " hp left");
 
-
+                        if (enemy.isDead()) { // Add isDead method to your Enemy class
+                            newAdventure.getCurrentRoom().addItem(enemy.getWeapon());
+                            System.out.println("Enemy DEAD");
+                        }
                     }
-
-
                 }
             }
         }
-
-
     }
+
+
+//    public void attack(String wantedEnemy) {
+//        // should add a length check here
+//        if (wantedEnemy.length() < 7) {
+//            System.out.println("Invalid enemy name.");
+//            return;
+//        }
+//        String enemyToFight = wantedEnemy.substring(6).trim();
+//
+//        ArrayList<Enemy> foundEnemies = newAdventure.getCurrentRoom().getEnemiesInRoomArr();
+//        if (foundEnemies.isEmpty()) {
+//            System.out.println("There are no enemies to attack");
+//        } else {
+//            for (Enemy enemy : foundEnemies) {
+//                if (enemy.getName().equalsIgnoreCase(enemyToFight)) {
+//                    Weapon equippedWeapon = newAdventure.getGamePlayer().getEquippedWeapon();
+//                    if (equippedWeapon == null) {
+//                        System.out.println("You don't have a weapon equipped.");
+//                    } else if (equippedWeapon.getRemainingUse() == 0) {
+//                        System.out.println("You don't have any ammunition left.");
+//                    } else {
+//                        equippedWeapon.useWeapon();
+//                        int enemyNewHealth = (enemy.getEnemyHealthPoints()) - equippedWeapon.damagePoints;
+//                        enemy.setEnemyHealthPoints(enemyNewHealth);
+//                        System.out.println("You attacked with " + equippedWeapon.getShortName() + " and did " +
+//                                equippedWeapon.getDamagePoints() + " damage on " + enemyToFight + " and "
+//                                + enemyToFight + " now has " + enemyNewHealth + " hp left");
+//
+//                        if (enemy.getEnemyHealthPoints() <= 0) {
+//                            newAdventure.getCurrentRoom().addItem(enemy.getWeapon());
+//                        }
+//
+//
+//                    }
+//
+//
+//                }
+//            }
+//        }
+//
+//
+//    }
+
     // Method to get String Input From User
     public String getStringInput() {
         try {
@@ -285,7 +329,6 @@ public class UserInterface {
             return getStringInput();
         }
     }
-
 
 
 }

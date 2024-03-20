@@ -72,38 +72,42 @@ public class Map {
 
         // Add items to rooms
         room1.addItem(new Item("Book", "A dusty old book with strange symbols."));
-        room1.addItem(new Item("Snake", "A glistnening green cobra, with teeth like daggers"));
-        room1.addItem(new Item("Shield", "A wide gold shield with special capabilites"));
+        room1.addItem(new Item("Snake", "A glistening green cobra, with teeth like daggers"));
+        room1.addItem(new Item("Shield", "A wide gold shield with special capabilities"));
         room1.addFood(new Food("Apple", "A pink apple with a strange glow to it", 10));
-        room1.addItem(new RangedWeapon("Bow", "Sharp and poisened bow", 10, 10));
+        room1.addItem(new RangedWeapon("Bow", "Sharp and poisoned bow", 10, 10));
         room1.addItem(new MeleeWeapon("Butter Knife", "Dull butter knife", 10));
-        room1.addEnemy(new Enemy("Troll", "A large spiky troll", 10,new MeleeWeapon("Club", "A large wooden club", 5)));
+
 
         room2.addItem(new Item("Candle", "A partially burned candle emitting a faint light."));
         room2.addItem(new Item("Scroll", "An old scroll with magical inscriptions."));
         room2.addItem(new Item("Lantern", "A small lantern that lights up dark places."));
-        room2.addFood(new Food("Sweetroll", "A pastry with icing on the top", 15));
+        room2.addFood(new Food("Sweet roll", "A pastry with icing on the top", 15));
         room2.addItem(new MeleeWeapon("Sword", "Gold useless sword", 10));
 
         room3.addItem(new Item("Key", "A rusty key that may unlock something."));
         room3.addItem(new Item("Sword", "A rusty old sword."));
         room3.addFood(new Food("Skooma", "A potion in a purple bottle with a pipe on top", -10));
         room3.addItem(new RangedWeapon("Crossbow", "A powerful crossbow", 10, 5));
+        room3.addEnemy(new Enemy("Troll","Large green troll", 30, new MeleeWeapon("knife","Furry knife",10)));
 
         room4.addItem(new Item("Potion", "A mysterious potion with a swirling liquid."));
         room4.addItem(new Item("Shield", "A wooden shield."));
         room4.addFood(new Food("Milk", "A fresh jug of milk", 5));
         room4.addItem(new MeleeWeapon("Dagger", "A small, sharp dagger.", 10));
+        room4.addEnemy(new Enemy("Falmer", "A small blind elf", 20,new MeleeWeapon("Dagger", "silver dagger",5)));
 
         room5.addItem(new Item("Treasure Chest", "A locked chest promising untold riches."));
         room5.addItem(new Item("Ring", "A golden ring with a sparkling gemstone."));
         room5.addFood(new Food("Wine", "An old looking wine bottle with spiced wine", -5));
         room5.addItem(new RangedWeapon("Magic Staff", "A staff imbued with powerful magic", 10, 3));
+        room5.addEnemy(new Enemy("Boss", "Big boss", 120, new MeleeWeapon("Skullcleaver","A big two bladed axe of dark metal", 15)));
 
         room6.addItem(new Item("Map", "A tattered map with cryptic markings."));
         room6.addItem(new Item("Coin", "A shiny silver coin."));
         room6.addFood(new Food("Stew", "A bowl of venison stew. Smells great", 20));
         room6.addItem(new RangedWeapon("Magic Bow", "A bow that shoots magical arrows", 10, 8));
+        room6.addEnemy(new Enemy("Hunter", "An old retired hunter", 2,new RangedWeapon("Gun","Rusty Gun", 10, 3)));
 
         room7.addItem(new Item("Bedroll", "A makeshift bedroll for a weary traveler."));
         room7.addItem(new Item("Chest", "A wooden chest with a lock."));
